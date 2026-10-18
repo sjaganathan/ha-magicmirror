@@ -182,8 +182,9 @@ class ModuleUpdateResponses:
         LOGGER.debug("ModuleUpdateResponses=%s", data)
 
         module_update: list[ModuleUpdateResponse] = []
-        for module in data.get("result"):
-            module_update.append(ModuleUpdateResponse.from_dict(module))
+        if isinstance(data.get("result"), (list, dict)):
+            for module in data["result"]:
+                module_update.append(ModuleUpdateResponse.from_dict(module))
 
         return ModuleUpdateResponses(
             success=bool(data.get("success")),
