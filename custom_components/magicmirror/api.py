@@ -155,7 +155,7 @@ class MagicMirrorApiClient:
 
     async def update_available(self) -> ModuleUpdateResponses:
         """Get update available status."""
-        response = await self.get(API_UPDATE_AVAILABLE)
+        response = await self.get(API_MM_UPDATE_AVAILABLE)
         if response is None:
             return ModuleUpdateResponses(success=False, result=[])
         return ModuleUpdateResponses.from_dict(response)
